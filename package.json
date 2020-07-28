@@ -1,6 +1,6 @@
 {
   "name": "nodejs-sockets-mongodb-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node js boiler plate with sockets and mongodb connections",
   "main": "index.js",
   "scripts": {
@@ -8,15 +8,22 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js "
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saikrishna77/saikrishna77-Node-Sockets-Mongodb-Boilerplate.git"
+  },
   "keywords": [
     "node",
-    "js",
-    "sockets",
+    "socket",
     "mongodb",
-    "boilerplate"
+    "express"
   ],
-  "author": "saikrishna",
+  "author": "S.Saikrishna",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saikrishna77/saikrishna77-Node-Sockets-Mongodb-Boilerplate/issues"
+  },
+  "homepage": "https://github.com/saikrishna77/saikrishna77-Node-Sockets-Mongodb-Boilerplate#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
