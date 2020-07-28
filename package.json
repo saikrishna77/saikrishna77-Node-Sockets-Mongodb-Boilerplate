@@ -1,7 +1,7 @@
 {
-  "name": "nodejs-mongodb-boilerplate",
+  "name": "nodejs-sockets-mongodb-boilerplate",
   "version": "0.0.1",
-  "description": "",
+  "description": "node js boiler plate with sockets and mongodb connections",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",

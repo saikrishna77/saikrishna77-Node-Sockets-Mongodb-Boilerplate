@@ -1,7 +1,12 @@
 const app = require('express')();
-const io = require('socket.io')(9133);
-const http = require('http').createServer(app);
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
+//----------------------------------------------------helpers----------------------------------------------------------------------//
+
 const { addUser, removeUser, getUser, getUserInRoom } = require('../Helpers/User');
+
+//---------------------------------------------------------------------------------------------------------------------------------//
 
 io.on('connection', socket => {
   console.log('We have a connection');
@@ -20,6 +25,7 @@ io.on('connection', socket => {
     socket.join(user.room);
     callback();
   });
+  
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
     io.to(user.room).emit('message', { user: user.name, text: message });
@@ -30,3 +36,11 @@ io.on('connection', socket => {
     console.log('User has left');
   });
 });
+
+//------------------------------------------------------Starting Server-------------------------------------------------------------------------//
+
+server.listen(processs.env.SOCKET_PORT || 2720,()=>{
+    console.log(`socket started at ${processs.env.SOCKET_PORT}`);
+})
+
+//---------------------------------------------------------------------------------------------------------------------------------------------//
