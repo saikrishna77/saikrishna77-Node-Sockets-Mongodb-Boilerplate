@@ -1,3 +1,7 @@
+//-------------------------------------------------Environment Variables --------------------------------------------------------------------//
+require('dotenv').config();
+//-------------------------------------------------------------------------------------------------------------------------------------------//
+
 const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -7,9 +11,6 @@ const MongoConnection = require('./core/MongoConnection.js');
 const FileUpload = require('./Routes/FileUpload');
 const BasicRoute = require('./Routes/BasicRoutes');
 const winston = require('./Config/Logger');
-
-//-------------------------------------------------Environment Variables --------------------------------------------------------------------//
-require('dotenv').config();
 
 //-----------------------------------Comment the below require if you are not using Sockets--------------------------------------------------//
 require('./core/SocketConnection');

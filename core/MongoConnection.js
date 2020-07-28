@@ -6,7 +6,7 @@ const connectDB = new Promise((resolve, reject) => {
   try {
     let client = new MongoClient(
       process.env.NODE_ENV === 'developemet' ? 'mongodb://localhost:27017/' : process.env.DB_URI,
-      { useNewUrlParser: true, useUnifiedTopology: true }
+      { useUnifiedTopology: true }
     );
     client.connect((err, db) => {
       if (err) {

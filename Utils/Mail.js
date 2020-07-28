@@ -1,17 +1,18 @@
 const nodemailer = require('nodemailer');
+const { getMaxListeners } = require('../Config/Logger');
 
 const sendMail = (subject, mailBody, mailID, html = null) => {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'saikrishna.tests@gmail.com',
-      pass: 'Saikrishna@1'
+      user: 'test@gmail.com',
+      pass: 'sadcvdv'
     }
   });
   let mailOptions;
   if (!html) {
     mailOptions = {
-      from: 'saikrishna.tests@gmail.com',
+      from: 'test@getMaxListeners.com',
       to: mailID,
       subject,
       text: mailBody

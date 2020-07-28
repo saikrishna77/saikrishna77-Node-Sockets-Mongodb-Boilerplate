@@ -25,7 +25,7 @@ io.on('connection', socket => {
     socket.join(user.room);
     callback();
   });
-  
+
   socket.on('sendMessage', (message, callback) => {
     const user = getUser(socket.id);
     io.to(user.room).emit('message', { user: user.name, text: message });
@@ -39,8 +39,8 @@ io.on('connection', socket => {
 
 //------------------------------------------------------Starting Server-------------------------------------------------------------------------//
 
-server.listen(processs.env.SOCKET_PORT || 2720,()=>{
-    console.log(`socket started at ${processs.env.SOCKET_PORT}`);
-})
+server.listen(process.env.SOCKET_PORT || 2720, () => {
+  console.log(`socket started at ${process.env.SOCKET_PORT}`);
+});
 
 //---------------------------------------------------------------------------------------------------------------------------------------------//
