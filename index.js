@@ -1,53 +1,38 @@
 require('dotenv').config();
-const express = require('express');
+require('./core/SocketConnection');
+const app = require('express')();
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const morgan = require('morgan');
 const helmet = require('helmet');
+
 const MongoConnection = require('./core/MongoConnection.js');
-const winston = require('./Config/Logger');
 
 const FileUpload = require('./Routes/FileUpload');
+const BasicRoute = require('./Routes/BasicRoutes');
+const winston = require('winston');
 
-const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(helmet());
 app.disable('x-powered-by');
-app.use(morgan('combined', { stream: winston.stream }));
-
-const port = process.env.PORT || 4000;
 let db;
-const awaitHandler = fn => {
-  return async (req, res, next) => {
-    try {
-      res.setHeader('Content-Type', 'application/json; charset=utf-8');
-      await fn(req, res, next);
-    } catch (err) {
-      winston.error(err.stack || err.message || err);
-      next(err);
-    }
-  };
-};
-
-app.get(
-  '/',
-  awaitHandler(async (req, res) => {
-    res.send({ res: 'dsfd' });
-  })
-);
-
+//-------------------------------------------------------------setting up basic routes-----------------------------------------------------//
 const exportDb = async () => {
-  module.exports = { db, app, port };
+  module.exports = { app };
+  module.exports = { db };
+
+  //Routes
+  app.use('/basic', BasicRoute);
   app.use('/fileUpload', FileUpload);
-  app.listen(port, () => {
-    console.log(`Started up at port http://localhost:${port}/`);
+  app.listen(process.env.PORT || 5000, () => {
+    console.log(`Started running port at http://localhost:${process.env.PORT || 5000}/`);
   });
 };
 
-const connectDb = async () => {
+const Initiate = async () => {
   db = await MongoConnection.connectDB;
   exportDb();
 };
+//--------------------------------------------------Starting the server---------------------------------------------------------------------//
 
-connectDb();
+Initiate();
